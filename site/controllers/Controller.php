@@ -60,6 +60,12 @@
                         $this->registerMessage = '<div class="alert alert-error">Моля попълнете всички полета.</div>';
                         return false;
                     }
+                    $q = "SELECT * FROM futbol_users WHERE email = '".$email."'";
+                    $res = $this->query($q);
+                    if(count($res->result) > 0) {
+                        $this->registerMessage = '<div class="alert alert-error">Вече има създаден акаунт асоцииран с <b><u>'.$email.'</u></b>.</div>';
+                        return false;   
+                    }
                     $q = "INSERT INTO futbol_users (name, password, email, phone) VALUES ('".$name."', '".$password."', '".$email."', '".$phone."')";
                     $this->query($q);
                     $_SESSION["futbolsessionpassword"] = $password;
