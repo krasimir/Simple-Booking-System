@@ -45,10 +45,10 @@
                     };
                 break;
                 case "register":
-                    $name = isset($_POST["name"]) ? $_POST["name"] : "";
-                    $password = isset($_POST["password"]) ? $_POST["password"] : "";
-                    $phone = isset($_POST["phone"]) ? $_POST["phone"] : "";
-                    $email = isset($_POST["email"]) ? $_POST["email"] : "";
+                    $name = isset($_POST["nameRegister"]) ? $_POST["nameRegister"] : "";
+                    $password = isset($_POST["passwordRegister"]) ? $_POST["passwordRegister"] : "";
+                    $phone = isset($_POST["phoneRegister"]) ? $_POST["phoneRegister"] : "";
+                    $email = isset($_POST["emailRegister"]) ? $_POST["emailRegister"] : "";
                     if($name == "" || $password == "" || $phone == "" || $email == "") {
                         $this->registerMessage = '<div class="alert alert-error">Моля попълнете всички полета.</div>';
                         return false;
@@ -73,7 +73,8 @@
             header("Location: ".$this->siteURL);
         }
         protected function isAdmin() {
-            if($this->user && ($this->user->email == "krasimir@outset.ws" || $this->user->email == "info@krasimirtsonev.com")) {
+            global $admins;
+            if($this->user && in_array($this->user->email, $admins)) {
                 return true;
             } else {
                 return false;
