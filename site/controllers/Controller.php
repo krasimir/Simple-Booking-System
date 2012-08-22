@@ -27,9 +27,16 @@
             
         }
         protected function renderLayout($content) {
+            $mainMenuAddons = '';
+            if($this->isAdmin()) {
+                $mainMenuAddons = view("adminsmenu.html", array(
+                    "siteURL" => $this->siteURL
+                ));
+            }
             die(view("layout.html", array(
                 "content" => $content,
-                "siteURL" => $this->siteURL 
+                "siteURL" => $this->siteURL,
+                "main-menu-addons" => $mainMenuAddons
             )));
         }
         protected function isLogin() {         

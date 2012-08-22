@@ -13,6 +13,7 @@
         ->register("/games/@idOfTheGame", "Game")
         ->register("/logout", "Logout")
         ->register("/money", "Money")
+        ->register("/users", "Users")
         ->register("/", "Games")
         ->run();
  
