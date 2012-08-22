@@ -1,0 +1,84 @@
+<section>
+    <div class="row">
+        <div class="span4">
+            <h2>Футбол</h2>
+            <hr />
+            <p>
+                Сайтът изисква регистрация по няколко причини:
+                <ul>
+                    <li>разпознаване на текущия потребил</li>
+                    <li>редактиране на вече направен запис</li>
+                    <li>автоматично попълване на име, телефон и т.н.</li>
+                </ul>
+                Препоръчително е името на потребителя да е на кирилица и да е значещ текст. Т.е. "Красимир", а не "bate_boiko_78" ;). Email-a и телефона са също важни полета и е добре да са валидни. Единственото приложение (за сега) на email-a ще бъде абониране за съобщения за конкретен мач (малък модул, който ще ни позволи да водим кратка комуникация през сайта).
+            </p>
+        </div>
+        <div class="span4">
+            <h2>Вход</h2>
+            <hr />
+            <form action="{siteURL}/" method="POST">
+                <input type="hidden" name="action" value="login" />
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Email</label>
+                        <div class="controls">
+                            <input type="text" name="email" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Парола за достъп</label>
+                        <div class="controls">
+                            <input type="password" name="password" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01"></label>
+                        <div class="controls">
+                            <input type="submit" class="btn btn-primary" value="Вход" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="span4">
+            <h2>Регистрация</h2>
+            <hr />
+            {registerMessage}
+            <form action="{siteURL}/" method="POST">
+                <input type="hidden" name="action" value="register" />
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Име (пример: Красимир)</label>
+                        <div class="controls">
+                            <input type="text" name="name" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Парола</label>
+                        <div class="controls">
+                            <input type="text" name="password" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Телефон (пример: 0896125927)</label>
+                        <div class="controls">
+                            <input type="text" name="phone" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01">Email (пример: info@krasimirtsonev.com)</label>
+                        <div class="controls">
+                            <input type="text" name="email" class="input-xlarge" id="input01" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="input01"></label>
+                        <div class="controls">
+                            <input type="submit" class="btn btn-primary" value="Вход" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</section>

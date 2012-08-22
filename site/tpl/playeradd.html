@@ -1,0 +1,46 @@
+<div class="error">{error}</div>
+<form class="form-horizontal" method="post" action="{action}">
+  <input type="hidden" name="action" value="add-player"/>
+  <input type="hidden" name="recordId" value="{recordId}"/>
+  <fieldset>
+    <legend>{formTitle}</legend>
+    
+    <div class="control-group">                
+      <label class="control-label" for="input01">Запазвам място за:</label>
+      <div class="controls">
+        <select name="numOfPlayers">
+            {numOfPlayersCurrent}
+            <option value="1">1 играч</option>
+            <option value="2">2 играчи</option>
+            <option value="3">3 играчи</option>
+            <option value="4">4 играчи</option>
+            <option value="5">5 играчи</option>
+            <option value="6">6 играчи</option>
+            <option value="7">7 играчи</option>
+            <option value="8">8 играчи</option>
+            <option value="9">9 играчи</option>
+            <option value="10">10 играчи</option>
+            <option value="11">11 играчи</option>
+            <option value="12">12 играчи</option>
+            <option value="13">13 играчи</option>
+            <option value="14">14 играчи</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="control-group">                
+      <label class="control-label" for="input01">Коментар (пример: взимам с мен Петкан и Драган "Куцото")</label>
+      <div class="controls">
+        <textarea name="comment">{comment}</textarea>
+      </div>
+    </div>
+    
+    <div class="control-group">                
+      <label class="control-label" for="input01"></label>
+      <div class="controls">
+        <input type="submit" class="btn btn-primary" value="запази" />
+      </div>
+    </div>
+    
+  </fieldset>
+</form>
