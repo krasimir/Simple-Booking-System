@@ -29,7 +29,8 @@
                             numOfPlayers = '".$numOfPlayers."', 
                             comment = '".$comment."'
                             WHERE id = '".$recordId."'
-                        ");                        
+                        ");    
+                        $this->sendMessage($game->subscribers, "редактиране на запис (".$game->date.")", $this->user->name."<br />".$this->user->phone."<br />".$numOfPlayers." играчи<br />".$comment);
                         header("Location: ".$this->siteURL."/games/".$game->id);
                     }
                 }

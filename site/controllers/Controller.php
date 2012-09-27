@@ -151,6 +151,22 @@
             $res = $this->query($q);
             return $this->user = isset($res->result[0]) ? $res->result[0] : false;
         }
+        protected function sendMessage($emails, $subject, $message) {
+            if(!is_array($emails)) {
+                $emails = explode(",", $emails);
+            }
+            foreach($emails as $to) {
+                if($to != "") {
+                    var_dump($to);
+                    $headers  = 'MIME-Version: 1.0' . "\r\n";
+                    $headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+                    $headers .= 'From: info@krasimirtsonev.com' . "\r\n" .
+                        'Reply-To: info@krasimirtsonev.com' . "\r\n";
+                    @mail($to, $subject, $message, $headers);
+                }
+            }
+                // die();
+        }
     }
 
 ?>

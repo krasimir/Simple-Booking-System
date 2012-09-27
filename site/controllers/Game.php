@@ -30,8 +30,28 @@
                     $maxId = $this->query("SELECT max(id) as id FROM futbol_players");
                     $newlyAddedRecord = $maxId->result[0]->id;
                     setcookie("futbolPlayers", isset($_COOKIE["futbolPlayers"]) ? $_COOKIE["futbolPlayers"].",".$newlyAddedRecord : $newlyAddedRecord, time()+604800); // 1 week
+                    $this->sendMessage($game->subscribers, "нов запис (".$game->date.")", $name."<br />".$phone."<br />".$numOfPlayers." играчи<br />".$comment);
                     header("Location: ".$this->siteURL."/games/".$game->id);
                 }
+            }
+
+            if(isset($_POST["action"]) && $_POST["action"] == "subscribing") {
+                $currentSubscribers = explode(",", $game->subscribers);
+                $removing = false;
+                $game->subscribers = '';
+                foreach($currentSubscribers as $subscriber) {
+                    if($subscriber == $this->user->email) {
+                        $removing = true;
+                    } else {
+                        if($subscriber != "") {
+                            $game->subscribers .= $subscriber.",";
+                        }
+                    }
+                }
+                if(!$removing) {
+                    $game->subscribers .= $this->user->email.",";
+                }
+                $this->query("UPDATE futbol_games SET subscribers = '".$game->subscribers."' WHERE id = '".$game->id."'");
             }
             
             $this->renderLayout(view("game.html", array(
@@ -53,6 +73,11 @@
                     "phone" => $this->user->phone,
                     "email" => $this->user->email,
                     "numOfPlayersCurrent" => ""
+                )),
+                "subscribing" => view("subscribing.html", array(
+                    "action" => $this->siteURL."/games/".$game->id,
+                    "buttonText" => $this->areYouSubscriber($game) ? "Вие сте абониран (премахни моя абонамент)" : "Абонирай ме",
+                    "currentSubscribers" => $this->getCurrentSubscribers($game)
                 ))
             )));
             
@@ -108,6 +133,25 @@
                 </tr>
             ';
             $str .= '</tbody><table>';
+            return $str;
+        }
+        private function areYouSubscriber($game) {
+            $currentSubscribers = explode(",", $game->subscribers);
+            foreach($currentSubscribers as $subscriber) {
+                if($subscriber == $this->user->email) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        private function getCurrentSubscribers($game) {
+            $currentSubscribers = explode(",", $game->subscribers);
+            $str = '';
+            foreach($currentSubscribers as $subscriber) {
+                if($subscriber != "") {
+                    $str .= $subscriber."<br />";
+                }
+            }
             return $str;
         }
     }
